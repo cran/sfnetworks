@@ -4,6 +4,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 knitr::opts_knit$set(global.par = TRUE)
+geos37 = sf::sf_extSoftVersion()["GEOS"] >= "3.7.0"
 
 ## ----plot, echo=FALSE, results='asis'-----------------------------------------
 # plot margins
@@ -153,7 +154,7 @@ net %>%
   st_set_geometry(NULL) %>%
   plot(vertex.color = "black", main = "Nodes without geometries")
 
-## -----------------------------------------------------------------------------
+## ---- eval = geos37-----------------------------------------------------------
 as_sfnetwork(roxel, directed = TRUE) %>%
   activate("edges") %>%
   st_reverse()

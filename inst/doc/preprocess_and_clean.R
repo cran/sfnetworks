@@ -4,6 +4,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 knitr::opts_knit$set(global.par = TRUE)
+geos37 = sf::sf_extSoftVersion()["GEOS"] >= "3.7.0"
 
 ## ----plot, echo=FALSE, results='asis'-----------------------------------------
 # plot margins
@@ -50,7 +51,7 @@ st_geometry(edges) = st_geometry(edges) %>%
 # The edges are connected.
 as_sfnetwork(edges)
 
-## -----------------------------------------------------------------------------
+## ---- eval = geos37-----------------------------------------------------------
 p1 = st_point(c(7, 51))
 p2 = st_point(c(7, 52))
 p3 = st_point(c(8, 52))
@@ -63,7 +64,6 @@ edges = st_as_sf(c(l1, l2, l3), crs = 4326)
 edges$oneway = c(TRUE, FALSE, FALSE)
 edges
 
-## -----------------------------------------------------------------------------
 duplicates = edges[!edges$oneway, ]
 reversed_duplicates = st_reverse(duplicates)
 
