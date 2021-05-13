@@ -106,10 +106,10 @@ plot(graphml_net)
 
 ## -----------------------------------------------------------------------------
 net %>%
-  activate("nodes") %>%
-  mutate(bc = centrality_betweenness()) %>%
   activate("edges") %>%
-  mutate(weight = edge_length())
+  mutate(weight = edge_length()) %>%
+  activate("nodes") %>%
+  mutate(bc = centrality_betweenness(weights = weight, directed = FALSE))
 
 ## -----------------------------------------------------------------------------
 net %>%
