@@ -1,3 +1,12 @@
+# sfnetworks v0.5.3
+
+* Addition of the `n_active` and `n_inactive` arguments to the print method of an sfnetwork object. The arguments define how many rows are printed for respectively the active and inactive network element. The values of these arguments can also be set globally by running e.g. `options(sfn_max_print_active = 1, sfn_max_print_inactive = 2)`. Refs [#157](https://github.com/luukvdmeer/sfnetworks/issues/157)
+* The example dataset `Roxel` is updated to comply with recent updates on the way a CRS is specified in an sf object. Refs [#167](https://github.com/luukvdmeer/sfnetworks/issues/167)
+* GitHub Actions workflows are updated to comply with new developments.
+* Documentation updates:
+  - Vignette file names are updated such that the appear in correct order on CRAN. Refs [#162](https://github.com/luukvdmeer/sfnetworks/issues/162)
+  - Example section of the plot method for sfnetwork objects now includes an example of how to add graticules and axes. Refs [#159](https://github.com/luukvdmeer/sfnetworks/issues/159)
+
 # sfnetworks v0.5.2
 
 * Compatibility with `s2` by adding a `s2::as_s2_geography()` method for sfnetwork objects. In the new version of `sf`, the `s2` package will be used for geometric operations involving longitude-latitude coordinates, see [here](https://github.com/r-spatial/sf/issues/1649).
@@ -12,7 +21,7 @@
 
 * Compatibility with `spatstat v2`, which is now splitted into multiple sub-packages. See [here](https://github.com/spatstat/spatstat/tree/v1.64-2#spatstat-is-now-split-into-several-packages) for details. In `sfnetworks`, this affected the functions `as_sfnetwork.linnet()`, `as_sfnetwork.psp()` and `as.linnet.sfnetwork()`. Using this functions now requires `spatstat >= 2.0.0` and `sf >= 0.9.8`.
 * Bug fixes:
-  - Usage of `match` for checking coordinate equality is replaced by a new `st_match` function specifically designed for this task. This fixes bugs related to numeric approximations of detailed coordinates. See [#130](https://github.com/luukvdmeer/sfnetworks/issues/104)
+  - Usage of `match` for checking coordinate equality is replaced by a new `st_match` function specifically designed for this task. This fixes bugs related to numeric approximations of detailed coordinates. See [#130](https://github.com/luukvdmeer/sfnetworks/issues/130)
 * Documentation updates:
   - It is now clearly documented that using `sf::st_reverse()` to reverse edge linestrings is only possible with GEOS versions >= 3.7.
 
@@ -28,7 +37,7 @@
 * The default of the `Inf_as_NaN` argument in `edge_circuity()` is changed from `TRUE` to `FALSE`, to better fit with the change mentioned above, and to make sure no changes to R defaults are made without the user explicitly specifying them.
 * Whenever there are multiple matches when spatially joining information to the nodes of a network with `sf::st_join()`, only the information of the first match is now joined. Before, this used to throw an error. Refs [#108](https://github.com/luukvdmeer/sfnetworks/discussions/108)
 * Removal of the morphed_sfnetwork method for `sf::st_geometry<-`, since geometries should not be replaced in a morphed state.
-* The warning '.. assumes attributes are constant over geometries' is now only raised when not all attribute-geometry relationships are set to 'constant'. Refs [#123](https://github.com/luukvdmeer/sfnetworks/discussions/123)
+* The warning '.. assumes attributes are constant over geometries' is now only raised when not all attribute-geometry relationships are set to 'constant'. Refs [#123](https://github.com/luukvdmeer/sfnetworks/issues/123)
 * Bug fixes:
   - The attribute-geometry relationships of edge attributes are now preserved during network construction. Fixes [#123](https://github.com/luukvdmeer/sfnetworks/issues/123)
   - `st_network_blend()` now correctly blends points that are very close to the network. Fixes [#98](https://github.com/luukvdmeer/sfnetworks/issues/98)
