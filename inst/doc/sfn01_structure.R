@@ -87,24 +87,6 @@ net = as_sfnetwork(roxel)
 plot(net)
 
 ## -----------------------------------------------------------------------------
-url = "https://raw.githubusercontent.com/ComplexNetTSP/Power_grids/v1.0.0/Countries/Netherlands/graphml/Netherlands_highvoltage.graphml"
-
-igraph::read_graph(url, format = "graphml") %>%
-  as_tbl_graph()
-
-## -----------------------------------------------------------------------------
-igraph::read_graph(url, format = "graphml") %>%
-  as_sfnetwork(wkt = "wktsrid4326", crs = 4326)
-
-## -----------------------------------------------------------------------------
-graphml_net = igraph::read_graph(url, format = "graphml") %>%
-  as_sfnetwork(wkt = "wktsrid4326", crs = 4326) %>%
-  convert(to_spatial_explicit, wkt = "wktsrid4326", crs = 4326, .clean = TRUE)
-
-graphml_net
-plot(graphml_net)
-
-## -----------------------------------------------------------------------------
 net %>%
   activate("edges") %>%
   mutate(weight = edge_length()) %>%
