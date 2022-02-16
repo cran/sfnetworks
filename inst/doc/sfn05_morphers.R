@@ -123,7 +123,7 @@ net %>%
   mutate(bc_dir = centrality_betweenness()) %>%
   unmorph() %>%
   mutate(bc_diff = bc_dir - bc_undir) %>%
-  arrange(bc_diff, desc())
+  arrange(desc(bc_diff))
 
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
 implicit_net = st_set_geometry(activate(net, "edges"), NULL)
