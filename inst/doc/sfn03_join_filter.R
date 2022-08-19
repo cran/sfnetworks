@@ -28,9 +28,9 @@ library(igraph)
 
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
 p1 = st_point(c(4151358, 3208045))
-p2 = st_point(c(4151340, 3207520))
-p3 = st_point(c(4151756, 3207506))
-p4 = st_point(c(4151774, 3208031))
+p2 = st_point(c(4151340, 3207120))
+p3 = st_point(c(4151856, 3207106))
+p4 = st_point(c(4151874, 3208031))
 
 poly = st_multipoint(c(p1, p2, p3, p4)) %>%
   st_cast("POLYGON") %>%
@@ -43,7 +43,8 @@ filtered = st_filter(net, poly, .pred = st_intersects)
 
 plot(net, col = "grey")
 plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
-plot(filtered)
+plot(net, col = "grey")
+plot(filtered, add = TRUE)
 
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
 filtered = net %>%
@@ -52,7 +53,8 @@ filtered = net %>%
 
 plot(net, col = "grey")
 plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
-plot(filtered)
+plot(net, col = "grey")
+plot(filtered, add = TRUE)
 
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
 filtered = net %>%
@@ -63,7 +65,20 @@ filtered = net %>%
 
 plot(net, col = "grey")
 plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
-plot(filtered)
+plot(net, col = "grey")
+plot(filtered, add = TRUE)
+
+## ---- fig.show='hold', out.width = '50%'--------------------------------------
+point = st_centroid(st_combine(net))
+
+filtered = net %>%
+  activate("nodes") %>%
+  st_filter(point, .predicate = st_is_within_distance, dist = 500)
+
+plot(net, col = "grey")
+plot(point, col = "red", cex = 3, pch = 20, add = TRUE)
+plot(net, col = "grey")
+plot(filtered, add = TRUE)
 
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
 filtered = net %>%
@@ -74,7 +89,8 @@ filtered = net %>%
 
 plot(net, col = "grey")
 plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
-plot(filtered)
+plot(net, col = "grey")
+plot(filtered, add = TRUE)
 
 ## -----------------------------------------------------------------------------
 net %>%
@@ -96,20 +112,19 @@ filtered_by_coords = net %>%
 plot(net, col = "grey")
 plot(l, col = "red", lty = 4, lwd = 4, add = TRUE)
 plot(net, col = "grey")
-plot(filtered_by_coords, col = "red", add = TRUE)
+plot(filtered_by_coords, add = TRUE)
 
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
-cropped = net %>%
+clipped = net %>%
   activate("edges") %>%
-  st_crop(poly) %>%
+  st_intersection(poly) %>%
   activate("nodes") %>%
   filter(!node_is_isolated())
 
 plot(net, col = "grey")
 plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
-plot(filtered, col = "grey")
-plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
-plot(cropped, add = TRUE)
+plot(net, col = "grey")
+plot(clipped, add = TRUE)
 
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
 codes = net %>%

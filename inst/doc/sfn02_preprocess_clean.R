@@ -4,7 +4,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 knitr::opts_knit$set(global.par = TRUE)
-geos37 = sf::sf_extSoftVersion()["GEOS"] >= "3.7.0"
+current_geos = numeric_version(sf::sf_extSoftVersion()["GEOS"])
+required_geos = numeric_version("3.7.0")
+geos37 = current_geos >= required_geos
 
 ## ----plot, echo=FALSE, results='asis'-----------------------------------------
 # plot margins
@@ -143,7 +145,7 @@ plot(st_geometry(simple, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
 # Add some attribute columns to the edges table.
 flows = sample(1:10, ecount(net), replace = TRUE)
-types = sample(c("path", "road"), ecount(net), replace = TRUE)
+types = c(rep("path", 8), rep("road", 7))
 foo = sample(c(1:ecount(net)), ecount(net))
 bar = sample(letters, ecount(net))
 
@@ -168,7 +170,7 @@ net %>%
 # --> Drop these attributes.
 combinations = list(
   flow = "sum",
-  type = function(x) if (length(unique(x)) == 1) x[1] else NA,
+  type = function(x) if (length(unique(x)) == 1) x[1] else "unknown",
   "ignore"
 )
 
@@ -200,6 +202,50 @@ plot(st_geometry(subdivision, "edges"), col = edge_colors(subdivision), lwd = 4)
 plot(st_geometry(subdivision, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 plot(st_geometry(smoothed, "edges"), col = edge_colors(smoothed), lwd = 4)
 plot(st_geometry(smoothed, "nodes"), pch = 20, cex = 1.5, add = TRUE)
+
+## -----------------------------------------------------------------------------
+# We know from before that our example network has two pseudo nodes.
+# Lets look at the attributes of their incident edges.
+subdivision %>%
+  activate("edges") %>%
+  filter(edge_is_incident(2) | edge_is_incident(9)) %>%
+  st_as_sf()
+
+# Define how we want to combine the attributes.
+# For the flows:
+# --> It makes sense to sum them when edges get merged.
+# For the type:
+# --> Preserve the type only if all edges in a set have the same type.
+combinations = list(
+  flow = "sum",
+  type = function(x) if (length(unique(x)) == 1) x[1] else "unknown",
+  "ignore"
+)
+
+# Apply the morpher.
+other_smoothed = convert(subdivision, to_spatial_smooth, summarise_attributes = combinations)
+
+# Inspect our concatenated edges.
+other_smoothed %>%
+  activate("edges") %>%
+  filter(edge_is_between(1, 2) | edge_is_between(7, 3)) %>%
+  st_as_sf()
+
+## ---- message=FALSE, fig.show='hold', out.width = '50%'-----------------------
+other_smoothed = convert(subdivision, to_spatial_smooth, require_equal = "type")
+
+plot(st_geometry(subdivision, "edges"), col = edge_colors(subdivision), lwd = 4)
+plot(st_geometry(subdivision, "nodes"), pch = 20, cex = 1.5, add = TRUE)
+plot(st_geometry(other_smoothed, "edges"), col = edge_colors(smoothed), lwd = 4)
+plot(st_geometry(other_smoothed, "nodes"), pch = 20, cex = 1.5, add = TRUE)
+
+## ---- message=FALSE, fig.show='hold', out.width = '50%'-----------------------
+other_smoothed = convert(subdivision, to_spatial_smooth, protect = 2)
+
+plot(st_geometry(subdivision, "edges"), col = edge_colors(subdivision), lwd = 4)
+plot(st_geometry(subdivision, "nodes"), pch = 20, cex = 1.5, add = TRUE)
+plot(st_geometry(other_smoothed, "edges"), col = edge_colors(smoothed), lwd = 4)
+plot(st_geometry(other_smoothed, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 
 ## -----------------------------------------------------------------------------
 # Retrieve the coordinates of the nodes.

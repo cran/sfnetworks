@@ -4,7 +4,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 knitr::opts_knit$set(global.par = TRUE)
-geos37 = sf::sf_extSoftVersion()["GEOS"] >= "3.7.0"
+current_geos = numeric_version(sf::sf_extSoftVersion()["GEOS"])
+required_geos = numeric_version("3.7.0")
+geos37 = current_geos >= required_geos
 
 ## ----plot, echo=FALSE, results='asis'-----------------------------------------
 # plot margins
@@ -61,13 +63,6 @@ edges
 net = sfnetwork(nodes, edges, node_key = "name")
 net
 
-## -----------------------------------------------------------------------------
-edges$from = c(1, 1, 3)
-edges$to = c(2, 3, 2)
-
-net = sfnetwork(nodes, edges, length_as_weight = TRUE)
-net
-
 ## ---- fig.show='hold', out.width='50%'----------------------------------------
 st_geometry(edges) = NULL
 
@@ -122,9 +117,6 @@ net %>%
   activate("nodes") %>%
   st_geometry()
 
-## -----------------------------------------------------------------------------
-st_geometry(net, "edges")
-
 ## ---- fig.show = 'hold', out.width = "50%"------------------------------------
 net %>%
   activate("edges") %>%
@@ -167,6 +159,14 @@ st_crs(net)
 
 ## -----------------------------------------------------------------------------
 st_transform(net, 3035)
+
+## -----------------------------------------------------------------------------
+st_precision(net)
+
+## -----------------------------------------------------------------------------
+net %>%
+  st_set_precision(1) %>%
+  st_precision()
 
 ## -----------------------------------------------------------------------------
 net %>%

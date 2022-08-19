@@ -26,16 +26,13 @@ library(tidygraph)
 library(tidyverse)
 library(TSP)
 
-## -----------------------------------------------------------------------------
+## ---- fig.height=5, fig.width=5-----------------------------------------------
 net = as_sfnetwork(roxel, directed = FALSE) %>%
   st_transform(3035) %>%
   activate("edges") %>%
   mutate(weight = edge_length())
 
-net
-
-## ---- fig.height=5, fig.width=5-----------------------------------------------
-paths = st_network_paths(net, from = 495, to = c(458, 121))
+paths = st_network_paths(net, from = 495, to = c(458, 121), weights = "weight")
 paths
 paths %>%
   slice(1) %>%
@@ -73,7 +70,7 @@ p2 = st_geometry(net, "nodes")[458]
 p3 = st_geometry(net, "nodes")[121] + st_sfc(st_point(c(-10, 100)))
 st_crs(p3) = st_crs(net)
 
-paths = st_network_paths(net, from = p1, to = c(p2, p3))
+paths = st_network_paths(net, from = p1, to = c(p2, p3), weights = "weight")
 
 plot(net, col = "grey")
 paths %>%
@@ -93,14 +90,39 @@ plot(net, col = colors[2])
 plot(connected_net, cex = 1.1, lwd = 1.1, add = TRUE)
 
 ## -----------------------------------------------------------------------------
-st_network_cost(net, from = c(p1, p2, p3), to = c(p1, p2, p3))
+st_network_cost(net, from = c(p1, p2, p3), to = c(p1, p2, p3), weights = "weight")
 
 ## -----------------------------------------------------------------------------
 # Our network has 701 nodes.
 with_graph(net, graph_order())
 
-cost_matrix = st_network_cost(net)
+cost_matrix = st_network_cost(net, weights = "weight")
 dim(cost_matrix)
+
+## -----------------------------------------------------------------------------
+net %>% 
+  convert(to_spatial_directed) %>% 
+  st_network_cost(
+    from = c(p1, p2, p3),
+    to = c(p1, p2, p3),
+    direction = "in"
+  )
+
+net %>% 
+  convert(to_spatial_directed) %>% 
+  st_network_cost(
+    from = c(p1, p2, p3),
+    to = c(p1, p2, p3),
+    direction = "out"
+  )
+
+net %>% 
+  convert(to_spatial_directed) %>% 
+  st_network_cost(
+    from = c(p1, p2, p3),
+    to = c(p1, p2, p3),
+    direction = "all"
+  )
 
 ## ---- fig.height=5, fig.width=5-----------------------------------------------
 # Select a random set of sites and facilities.
@@ -123,9 +145,7 @@ new_net = net %>%
   st_network_blend(c(sites, facilities))
 
 # Calculate the cost matrix.
-# By default the weight column is used for edge weights.
-# In our case this column contains the geographic lengths of the edges.
-cost_matrix = st_network_cost(new_net, from = sites, to = facilities)
+cost_matrix = st_network_cost(new_net, from = sites, to = facilities, weights = "weight")
 
 # Find for each site which facility is closest.
 closest = facilities[apply(cost_matrix, 1, function(x) which(x == min(x))[1])]
@@ -158,7 +178,7 @@ rdm = net %>%
 
 ## -----------------------------------------------------------------------------
 net = activate(net, "nodes")
-cost_matrix = st_network_cost(net, from = rdm, to = rdm)
+cost_matrix = st_network_cost(net, from = rdm, to = rdm, weights = "weight")
 
 # Use nearest node indices as row and column names.
 rdm_idxs = st_nearest_feature(rdm, net)
@@ -168,7 +188,7 @@ colnames(cost_matrix) = rdm_idxs
 round(cost_matrix, 0)
 
 ## -----------------------------------------------------------------------------
-tour = solve_TSP(TSP(cost_matrix))
+tour = solve_TSP(TSP(units::drop_units(cost_matrix)))
 tour_idxs = as.numeric(names(tour))
 tour_idxs
 
@@ -187,7 +207,7 @@ to_idxs = c(tour_idxs[2:length(tour_idxs)], tour_idxs[1])
 tsp_paths = mapply(st_network_paths,
     from = from_idxs,
     to = to_idxs,
-    MoreArgs = list(x = net)
+    MoreArgs = list(x = net, weights = "weight")
   )["node_paths", ] %>%
   unlist(recursive = FALSE)
 
@@ -256,6 +276,22 @@ plot(iso_poly, col = NA, border = "black", lwd = 3, add = TRUE)
 plot(iso, col = colors[2], add = TRUE)
 plot(p, col = colors[1], pch = 8, cex = 2, lwd = 2, add = TRUE)
 
+## ---- fig.width=5, fig.height=5-----------------------------------------------
+# Define the threshold values (in seconds).
+# Define also the colors to plot the neighborhoods in.
+thresholds = rev(seq(60, 600, 60))
+palette = sf.colors(n = 10)
+
+# Plot the results.
+plot(net, col = "grey")
+
+for (i in c(1:10)) {
+  nbh = convert(net, to_spatial_neighborhood, p, thresholds[i], weights = "time")
+  plot(nbh, col = palette[i], add = TRUE)
+}
+
+plot(p, pch = 8, cex = 2, lwd = 2, add = TRUE)
+
 ## -----------------------------------------------------------------------------
 table(roxel$type)
 
@@ -288,7 +324,7 @@ weighted_net = net %>%
   mutate(weight = edge_length() * multiplier)
 
 ## ---- fig.show='hold', out.width = '50%'--------------------------------------
-weighted_paths = st_network_paths(weighted_net, from = 495, to = c(458, 121))
+weighted_paths = st_network_paths(weighted_net, from = 495, to = c(458, 121), weights = "weight")
 
 weighted_paths_sf = weighted_net %>%
   activate("edges") %>%

@@ -133,34 +133,19 @@ plot(implicit_net, draw_lines = FALSE, main = "Implicit edges")
 plot(explicit_net, main = "Explicit edges")
 
 ## ---- fig.width=5, fig.height=5-----------------------------------------------
-# As an example we will calculate multiple neighborhoods with different thresholds.
-# First we set the geographic lengths of the edges as the edge weights.
-# These weights will automatically be used when calculating travel costs.
-# Just as in the shortest paths calculation functions.
-new_net = net %>%
-  activate("edges") %>%
-  mutate(weight = edge_length())
-
 # Define the origin location.
 p = net %>%
   st_geometry() %>%
   st_combine() %>%
   st_centroid()
 
-# Define the threshold values (in meters).
-# Define also the colors to plot the neighborhoods in.
-thresholds = rev(seq(100, 1000, 100))
-palette = sf.colors(n = 10)
+# Subset neighborhood.
+neigh_net = net %>%
+  activate("edges") %>%
+  convert(to_spatial_neighborhood, p, threshold = 500, weights = edge_length())
 
-# Plot the results.
 plot(net, col = "grey")
-
-for (i in c(1:10)) {
-  nbh = convert(net, to_spatial_neighborhood, p, thresholds[i])
-  plot(nbh, col = palette[i], add = TRUE)
-}
-
-plot(p, pch = 8, cex = 2, lwd = 2, add = TRUE)
+plot(neigh_net, col = "red", add = TRUE)
 
 ## -----------------------------------------------------------------------------
 net %>%
