@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2022-08-19" />
+<meta name="date" content="2022-10-27" />
 
 <title>2. Network pre-processing and cleaning</title>
 
@@ -30,23 +30,23 @@ document.addEventListener('DOMContentLoaded', function(e) {
 </script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
@@ -64,55 +64,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -121,13 +120,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -332,7 +338,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">2. Network pre-processing and cleaning</h1>
-<h4 class="date">2022-08-19</h4>
+<h4 class="date">2022-10-27</h4>
 
 
 
@@ -680,12 +686,12 @@ different combination techniques when simplifying the network.</p>
 #&gt; <span style="color: #555555;"># Bounding box:  xmin: 0 ymin: -1 xmax: 7 ymax: 3</span>
 #&gt;    from    to              x  flow type    foo bar  
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;LINESTRING&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
-#&gt; <span style="color: #555555;">1</span>    10     9 (6 1.2, 5.8 1)     2 path      5 n    
-#&gt; <span style="color: #555555;">2</span>    11    10 (6.2 1, 6 1.2)     5 path      8 s    
-#&gt; <span style="color: #555555;">3</span>     9    12 (5.8 1, 6 0.8)     8 path      9 f    
-#&gt; <span style="color: #555555;">4</span>    12    11 (6 0.8, 6.2 1)     7 path     10 v    
-#&gt; <span style="color: #555555;">5</span>    11    15   (6.2 1, 7 1)     7 path     15 o    
-#&gt; <span style="color: #555555;">6</span>    10    13   (6 1.2, 6 2)     2 path      1 d    
+#&gt; <span style="color: #555555;">1</span>    10     9 (6 1.2, 5.8 1)     8 path      1 h    
+#&gt; <span style="color: #555555;">2</span>    11    10 (6.2 1, 6 1.2)     2 path      5 k    
+#&gt; <span style="color: #555555;">3</span>     9    12 (5.8 1, 6 0.8)     8 path     11 u    
+#&gt; <span style="color: #555555;">4</span>    12    11 (6 0.8, 6.2 1)     5 path      9 r    
+#&gt; <span style="color: #555555;">5</span>    11    15   (6.2 1, 7 1)    10 path      7 d    
+#&gt; <span style="color: #555555;">6</span>    10    13   (6 1.2, 6 2)     2 path     12 j    
 #&gt; <span style="color: #555555;"># … with 9 more rows</span>
 #&gt; <span style="color: #555555;">#
 #&gt; # Node Data:     15 × 1</span>
@@ -713,8 +719,8 @@ different combination techniques when simplifying the network.</p>
 #&gt; <span style="color: #555555;"># A tibble: 2 × 7</span>
 #&gt;    from    to               x  flow type    foo bar  
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;LINESTRING&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
-#&gt; <span style="color: #555555;">1</span>     6     7      (4 3, 4 2)     3 path      6 y    
-#&gt; <span style="color: #555555;">2</span>     6     7 (4 3, 5 2, 4 2)     2 road      7 e
+#&gt; <span style="color: #555555;">1</span>     6     7      (4 3, 4 2)     5 path     15 f    
+#&gt; <span style="color: #555555;">2</span>     6     7 (4 3, 5 2, 4 2)     3 road     13 n
 </CODE></PRE>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define how we want to combine the attributes.</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For the flows:</span></span>
@@ -745,7 +751,7 @@ different combination techniques when simplifying the network.</p>
 #&gt; <span style="color: #555555;"># A tibble: 1 × 6</span>
 #&gt;    from    to            x  flow type    .tidygraph_edge_index
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;LINESTRING&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;list&gt;</span>               
-#&gt; <span style="color: #555555;">1</span>     6     7   (4 3, 4 2)     5 unknown <span style="color: #555555;">&lt;int [2]&gt;</span>
+#&gt; <span style="color: #555555;">1</span>     6     7   (4 3, 4 2)     8 unknown <span style="color: #555555;">&lt;int [2]&gt;</span>
 </CODE></PRE>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(net, <span class="st">&quot;edges&quot;</span>), <span class="at">col =</span> <span class="fu">edge_colors</span>(net), <span class="at">lwd =</span> <span class="dv">4</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(net, <span class="st">&quot;nodes&quot;</span>), <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
@@ -866,10 +872,10 @@ columns are not attributes!</p>
 #&gt; <span style="color: #555555;"># A tibble: 4 × 6</span>
 #&gt;    from    to               x  flow type    .tidygraph_edge_index
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;LINESTRING&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
-#&gt; <span style="color: #555555;">1</span>     1     2 (0 1, 1 1, 2 1)     5 road                        1
-#&gt; <span style="color: #555555;">2</span>     2     3      (2 1, 3 1)     5 road                        2
-#&gt; <span style="color: #555555;">3</span>     8     9      (4 3, 4 2)     5 unknown                     5
-#&gt; <span style="color: #555555;">4</span>     9     4      (4 2, 4 1)     3 road                        6
+#&gt; <span style="color: #555555;">1</span>     1     2 (0 1, 1 1, 2 1)     6 road                        1
+#&gt; <span style="color: #555555;">2</span>     2     3      (2 1, 3 1)     1 road                        2
+#&gt; <span style="color: #555555;">3</span>     8     9      (4 3, 4 2)     8 unknown                     5
+#&gt; <span style="color: #555555;">4</span>     9     4      (4 2, 4 1)     1 road                        6
 </CODE></PRE>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define how we want to combine the attributes.</span></span>
@@ -899,8 +905,8 @@ columns are not attributes!</p>
 #&gt; <span style="color: #555555;"># A tibble: 2 × 6</span>
 #&gt;    from    to  flow type    .tidygraph_edge_index                    x
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;list&gt;</span>                        <span style="color: #555555; font-style: italic;">&lt;LINESTRING&gt;</span>
-#&gt; <span style="color: #555555;">1</span>     1     2    10 road    <span style="color: #555555;">&lt;int [2]&gt;</span>             (0 1, 1 1, 2 1, 3 1)
-#&gt; <span style="color: #555555;">2</span>     7     3     8 unknown <span style="color: #555555;">&lt;int [2]&gt;</span>                  (4 3, 4 2, 4 1)
+#&gt; <span style="color: #555555;">1</span>     1     2     7 road    <span style="color: #555555;">&lt;int [2]&gt;</span>             (0 1, 1 1, 2 1, 3 1)
+#&gt; <span style="color: #555555;">2</span>     7     3     9 unknown <span style="color: #555555;">&lt;int [2]&gt;</span>                  (4 3, 4 2, 4 1)
 </CODE></PRE>
 <p>Secondly, it is possible to only remove those pseudo nodes for which
 attributes among their incident edges are equal. To do this, set
@@ -1021,9 +1027,9 @@ for the sake of completeness, we will still show it:</p>
 #&gt; <span style="color: #555555;"># Bounding box:  xmin: 0 ymin: -1 xmax: 7 ymax: 3</span>
 #&gt;    from    to  flow type  .tidygraph_edge_index            x
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> <span style="color: #555555; font-style: italic;">&lt;list&gt;</span>                <span style="color: #555555; font-style: italic;">&lt;LINESTRING&gt;</span>
-#&gt; <span style="color: #555555;">1</span>     2     3     5 road  <span style="color: #555555;">&lt;int [1]&gt;</span>               (3 1, 4 1)
-#&gt; <span style="color: #555555;">2</span>     3     4     3 path  <span style="color: #555555;">&lt;int [1]&gt;</span>             (4 1, 5.8 1)
-#&gt; <span style="color: #555555;">3</span>     5     2     7 road  <span style="color: #555555;">&lt;int [1]&gt;</span>               (3 2, 3 1)
+#&gt; <span style="color: #555555;">1</span>     2     3     1 road  <span style="color: #555555;">&lt;int [1]&gt;</span>               (3 1, 4 1)
+#&gt; <span style="color: #555555;">2</span>     3     4     5 path  <span style="color: #555555;">&lt;int [1]&gt;</span>             (4 1, 5.8 1)
+#&gt; <span style="color: #555555;">3</span>     5     2     1 road  <span style="color: #555555;">&lt;int [1]&gt;</span>               (3 2, 3 1)
 #&gt; <span style="color: #555555;"># … with 11 more rows</span>
 </CODE></PRE>
 <p>The combination of the cluster index and the component index can now
@@ -1091,8 +1097,8 @@ columns are not attributes!</p>
 #&gt;         x .tidygraph_node_index   cls   cmp is_priority
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;POINT&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;lgl&gt;</span>      
 #&gt; <span style="color: #555555;">1</span> (5.8 1)                     5     4     1 TRUE       
-#&gt; <span style="color: #555555;">2</span> (6 0.8)                    11     4     1 TRUE       
-#&gt; <span style="color: #555555;">3</span> (6 1.2)                    12     4     1 TRUE       
+#&gt; <span style="color: #555555;">2</span> (6 0.8)                    11     4     1 FALSE      
+#&gt; <span style="color: #555555;">3</span> (6 1.2)                    12     4     1 FALSE      
 #&gt; <span style="color: #555555;">4</span> (6.2 1)                    14     4     1 TRUE
 </CODE></PRE>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define how we want to combine the attributes.</span></span>
