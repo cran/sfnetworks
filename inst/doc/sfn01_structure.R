@@ -26,8 +26,8 @@ old_hooks = fansi::set_knit_hooks(
 library(sfnetworks)
 library(sf)
 library(tidygraph)
-library(tidyverse)
 library(igraph)
+library(ggplot2)
 
 ## -----------------------------------------------------------------------------
 p1 = st_point(c(7, 51))

@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2022-10-27" />
+<meta name="date" content="2023-02-26" />
 
 <title>5. Spatial morphers</title>
 
@@ -338,7 +338,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">5. Spatial morphers</h1>
-<h4 class="date">2022-10-27</h4>
+<h4 class="date">2023-02-26</h4>
 
 
 
@@ -351,8 +351,7 @@ detail what they are and how to use them.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sfnetworks)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygraph)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span></code></pre></div>
 <div id="morphing-and-unmorphing" class="section level2">
 <h2>Morphing and unmorphing</h2>
 <p><em>Morphing</em> networks is a functionality that has its roots in
@@ -672,12 +671,7 @@ endpoint of the linestring geometry, and
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bc_dir =</span> <span class="fu">centrality_betweenness</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unmorph</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bc_diff =</span> bc_dir <span class="sc">-</span> bc_undir) <span class="sc">%&gt;%</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(bc_diff))</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in betweenness(graph = graph, v = V(graph), directed = directed, :</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;nobigint&#39; is deprecated since igraph 1.3 and will be removed in igraph 1.4</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in betweenness(graph = graph, v = V(graph), directed = directed, :</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;nobigint&#39; is deprecated since igraph 1.3 and will be removed in igraph 1.4</span></span></code></pre></div>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(bc_diff))</span></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>#&gt; <span style="color: #555555;"># A sfnetwork with</span> <span style="color: #555555;">701</span> <span style="color: #555555;">nodes and</span> <span style="color: #555555;">851</span> <span style="color: #555555;">edges
 #&gt; #
 #&gt; # CRS: </span> <span style="color: #555555;">EPSG:3035</span> <span style="color: #555555;">
@@ -1053,7 +1047,7 @@ requires a geographic CRS for that.</p>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">&quot;edges&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">azimuth =</span> <span class="fu">edge_azimuth</span>())</span></code></pre></div>
 <PRE class="fansi fansi-error"><CODE>#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `stopifnot()`:</span>
-#&gt; <span style="color: #BBBB00;">!</span> Problem while computing `azimuth = edge_azimuth()`.
+#&gt; <span style="color: #00BBBB;">ℹ</span> In argument: `azimuth = edge_azimuth()`.
 #&gt; <span style="font-weight: bold;">Caused by error in `st_geod_azimuth()`:</span>
 #&gt; <span style="color: #BBBB00;">!</span> st_is_longlat(x) is not TRUE
 </CODE></PRE>

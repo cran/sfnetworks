@@ -23,7 +23,8 @@ old_hooks = fansi::set_knit_hooks(
 library(sfnetworks)
 library(sf)
 library(tidygraph)
-library(tidyverse)
+library(dplyr)
+library(purrr)
 library(TSP)
 
 ## ---- fig.height=5, fig.width=5-----------------------------------------------

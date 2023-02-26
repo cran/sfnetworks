@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2022-10-27" />
+<meta name="date" content="2023-02-26" />
 
 <title>3. Spatial joins and filters</title>
 
@@ -338,7 +338,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">3. Spatial joins and filters</h1>
-<h4 class="date">2022-10-27</h4>
+<h4 class="date">2023-02-26</h4>
 
 
 
@@ -362,8 +362,8 @@ underlying algorithms, see <a href="https://r-spatial.github.io/sf/reference/geo
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sfnetworks)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygraph)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <div id="spatial-filters" class="section level2">
 <h2>Spatial filters</h2>
 <div id="using-st_filter" class="section level3">
@@ -583,8 +583,8 @@ feature). To preserve a valid spatial network structure,
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_intersection</span>(poly) <span class="sc">%&gt;%</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">activate</span>(<span class="st">&quot;nodes&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">node_is_isolated</span>())</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout all</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; geometries</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: attribute variables are assumed to be spatially constant throughout</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; all geometries</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(net, <span class="at">col =</span> <span class="st">&quot;grey&quot;</span>)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(poly, <span class="at">border =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">4</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
@@ -684,8 +684,8 @@ occurs.</p>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Join on nodes gives a warning that only the first match per node is joined.</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The number of nodes in the resulting network remains the same.</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">st_join</span>(net, two_equal_polys, <span class="at">join =</span> st_intersects)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Multiple matches were detected from some nodes. Only the first match is</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; considered</span></span></code></pre></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Multiple matches were detected from some nodes. Only the first match</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; is considered</span></span></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>#&gt; <span style="color: #555555;"># A sfnetwork with</span> <span style="color: #555555;">701</span> <span style="color: #555555;">nodes and</span> <span style="color: #555555;">851</span> <span style="color: #555555;">edges
 #&gt; #
 #&gt; # CRS: </span> <span style="color: #555555;">EPSG:3035</span> <span style="color: #555555;">
