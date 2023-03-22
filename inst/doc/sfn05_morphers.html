@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-02-26" />
+<meta name="date" content="2023-03-22" />
 
 <title>5. Spatial morphers</title>
 
@@ -338,7 +338,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">5. Spatial morphers</h1>
-<h4 class="date">2023-02-26</h4>
+<h4 class="date">2023-03-22</h4>
 
 
 
@@ -401,10 +401,7 @@ is assigned to, and automatically merge those changes back into the
 #&gt; #
 #&gt; # An undirected multigraph with 14 components with spatially explicit edges
 #&gt; #
-#&gt; # Node Data:     701 × 1 (active)</span>
-#&gt; <span style="color: #555555;"># Geometry type: POINT</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 701 × 1</span>
 #&gt;            geometry
 #&gt;         <span style="color: #555555; font-style: italic;">&lt;POINT [m]&gt;</span>
 #&gt; <span style="color: #555555;">1</span> (4151491 3207923)
@@ -415,10 +412,7 @@ is assigned to, and automatically merge those changes back into the
 #&gt; <span style="color: #555555;">6</span> (4151421 3207592)
 #&gt; <span style="color: #555555;"># … with 695 more rows</span>
 #&gt; <span style="color: #555555;">#
-#&gt; # Edge Data:     851 × 6</span>
-#&gt; <span style="color: #555555;"># Geometry type: LINESTRING</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 851 × 6</span>
 #&gt;    from    to name                  type                          geometry group
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;LINESTRING [m]&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
 #&gt; <span style="color: #555555;">1</span>     1     2 Havixbecker Strasse   residential (4151491 3207923, 4151474…     4
@@ -533,10 +527,7 @@ only if they were not connected in the original graph.</p>
 #&gt; #
 #&gt; # An undirected simple graph with 1 component with spatially implicit edges
 #&gt; #
-#&gt; # Node Data:     701 × 2 (active)</span>
-#&gt; <span style="color: #555555;"># Geometry type: POINT</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 701 × 2</span>
 #&gt;            geometry .tidygraph_node_index
 #&gt;         <span style="color: #555555; font-style: italic;">&lt;POINT [m]&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
 #&gt; <span style="color: #555555;">1</span> (4151491 3207923)                     1
@@ -547,7 +538,7 @@ only if they were not connected in the original graph.</p>
 #&gt; <span style="color: #555555;">6</span> (4151421 3207592)                     6
 #&gt; <span style="color: #555555;"># … with 695 more rows</span>
 #&gt; <span style="color: #555555;">#
-#&gt; # Edge Data: 244,503 × 2</span>
+#&gt; # A tibble: 244,503 × 2</span>
 #&gt;    from    to
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
 #&gt; <span style="color: #555555;">1</span>     1   701
@@ -678,10 +669,7 @@ endpoint of the linestring geometry, and
 #&gt; #
 #&gt; # An undirected multigraph with 14 components with spatially explicit edges
 #&gt; #
-#&gt; # Node Data:     701 × 4 (active)</span>
-#&gt; <span style="color: #555555;"># Geometry type: POINT</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 701 × 4</span>
 #&gt;            geometry bc_undir bc_dir bc_diff
 #&gt;         <span style="color: #555555; font-style: italic;">&lt;POINT [m]&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
 #&gt; <span style="color: #555555;">1</span> (4152048 3207854)    <span style="text-decoration: underline;">1</span>159. <span style="text-decoration: underline;">38</span>279.  <span style="text-decoration: underline;">37</span>120.
@@ -692,10 +680,7 @@ endpoint of the linestring geometry, and
 #&gt; <span style="color: #555555;">6</span> (4152085 3207577)   <span style="text-decoration: underline;">17</span>974. <span style="text-decoration: underline;">52</span>110.  <span style="text-decoration: underline;">34</span>136.
 #&gt; <span style="color: #555555;"># … with 695 more rows</span>
 #&gt; <span style="color: #555555;">#
-#&gt; # Edge Data:     851 × 5</span>
-#&gt; <span style="color: #555555;"># Geometry type: LINESTRING</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 851 × 5</span>
 #&gt;    from    to name                  type                                geometry
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                       <span style="color: #555555; font-style: italic;">&lt;LINESTRING [m]&gt;</span>
 #&gt; <span style="color: #555555;">1</span>   166   500 Havixbecker Strasse   residential (4151491 3207923, 4151474 32079…
@@ -776,24 +761,18 @@ contains multiple sfnetworks, one for each from-to combination.</p>
 #&gt; #
 #&gt; # An unrooted tree with spatially explicit edges
 #&gt; #
-#&gt; # Edge Data:     25 × 6 (active)</span>
-#&gt; <span style="color: #555555;"># Geometry type: LINESTRING</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4151193 ymin: 3207076 xmax: 4151531 ymax: 3207923</span>
-#&gt;    from    to name                  type                       geometry .tidygr…
-#&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>              <span style="color: #555555; font-style: italic;">&lt;LINESTRING [m]&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
-#&gt; <span style="color: #555555;">1</span>     2     3 Pienersallee          secon… (4151398 3207777, 4151390 3…        2
-#&gt; <span style="color: #555555;">2</span>     6     7 Wilhelm-Raabe-Strasse resid… (4151350 3207279, 4151312 3…       20
-#&gt; <span style="color: #555555;">3</span>     9    11 <span style="color: #BB0000;">NA</span>                    path   (4151322 3207076, 4151324 3…       96
-#&gt; <span style="color: #555555;">4</span>    11    12 <span style="color: #BB0000;">NA</span>                    path   (4151324 3207081, 4151325 3…       97
-#&gt; <span style="color: #555555;">5</span>    13    14 Am Meckelbach         resid… (4151323 3207085, 4151345 3…      107
-#&gt; <span style="color: #555555;">6</span>     8    10 Pienersallee          secon… (4151340 3207612, 4151337 3…      115
-#&gt; <span style="color: #555555;"># … with 19 more rows</span>
+#&gt; # A tibble: 25 × 6</span>
+#&gt;    from    to name                  type                        geometry .tidy…¹
+#&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>               <span style="color: #555555; font-style: italic;">&lt;LINESTRING [m]&gt;</span>   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
+#&gt; <span style="color: #555555;">1</span>     2     3 Pienersallee          secondary  (4151398 3207777, 415139…       2
+#&gt; <span style="color: #555555;">2</span>     6     7 Wilhelm-Raabe-Strasse residenti… (4151350 3207279, 415131…      20
+#&gt; <span style="color: #555555;">3</span>     9    11 <span style="color: #BB0000;">NA</span>                    path       (4151322 3207076, 415132…      96
+#&gt; <span style="color: #555555;">4</span>    11    12 <span style="color: #BB0000;">NA</span>                    path       (4151324 3207081, 415132…      97
+#&gt; <span style="color: #555555;">5</span>    13    14 Am Meckelbach         residenti… (4151323 3207085, 415134…     107
+#&gt; <span style="color: #555555;">6</span>     8    10 Pienersallee          secondary  (4151340 3207612, 415133…     115
+#&gt; <span style="color: #555555;"># … with 19 more rows, and abbreviated variable name ¹​.tidygraph_edge_index</span>
 #&gt; <span style="color: #555555;">#
-#&gt; # Node Data:     26 × 2</span>
-#&gt; <span style="color: #555555;"># Geometry type: POINT</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4151193 ymin: 3207076 xmax: 4151531 ymax: 3207923</span>
+#&gt; # A tibble: 26 × 2</span>
 #&gt;            geometry .tidygraph_node_index
 #&gt;         <span style="color: #555555; font-style: italic;">&lt;POINT [m]&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
 #&gt; <span style="color: #555555;">1</span> (4151491 3207923)                     1
@@ -960,10 +939,7 @@ network. A tiny example just to get an idea of how this would work:</p>
 #&gt; #
 #&gt; # An undirected multigraph with 14 components with spatially explicit edges
 #&gt; #
-#&gt; # Node Data:     701 × 2 (active)</span>
-#&gt; <span style="color: #555555;"># Geometry type: POINT</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 701 × 2</span>
 #&gt;            geometry post_code
 #&gt;         <span style="color: #555555; font-style: italic;">&lt;POINT [m]&gt;</span>     <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
 #&gt; <span style="color: #555555;">1</span> (4151491 3207923)        <span style="color: #BB0000;">NA</span>
@@ -974,10 +950,7 @@ network. A tiny example just to get an idea of how this would work:</p>
 #&gt; <span style="color: #555555;">6</span> (4151421 3207592)        <span style="color: #BB0000;">NA</span>
 #&gt; <span style="color: #555555;"># … with 695 more rows</span>
 #&gt; <span style="color: #555555;">#
-#&gt; # Edge Data:     851 × 5</span>
-#&gt; <span style="color: #555555;"># Geometry type: LINESTRING</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 851 × 5</span>
 #&gt;    from    to name                  type                                geometry
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                       <span style="color: #555555; font-style: italic;">&lt;LINESTRING [m]&gt;</span>
 #&gt; <span style="color: #555555;">1</span>     1     2 Havixbecker Strasse   residential (4151491 3207923, 4151474 32079…
@@ -1007,10 +980,7 @@ example just to get an idea of how this would work:</p>
 #&gt; #
 #&gt; # An undirected multigraph with 14 components with spatially explicit edges
 #&gt; #
-#&gt; # Node Data:     701 × 3 (active)</span>
-#&gt; <span style="color: #555555;"># Geometry type: POINT</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 701 × 3</span>
 #&gt;            geometry building post_code
 #&gt;         <span style="color: #555555; font-style: italic;">&lt;POINT [m]&gt;</span> <span style="color: #555555; font-style: italic;">&lt;lgl&gt;</span>        <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
 #&gt; <span style="color: #555555;">1</span> (4151491 3207923) TRUE          <span style="text-decoration: underline;">1</span>020
@@ -1021,10 +991,7 @@ example just to get an idea of how this would work:</p>
 #&gt; <span style="color: #555555;">6</span> (4151421 3207592) FALSE           <span style="color: #BB0000;">NA</span>
 #&gt; <span style="color: #555555;"># … with 695 more rows</span>
 #&gt; <span style="color: #555555;">#
-#&gt; # Edge Data:     851 × 5</span>
-#&gt; <span style="color: #555555;"># Geometry type: LINESTRING</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 851 × 5</span>
 #&gt;    from    to name                  type                                geometry
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                       <span style="color: #555555; font-style: italic;">&lt;LINESTRING [m]&gt;</span>
 #&gt; <span style="color: #555555;">1</span>     1     2 Havixbecker Strasse   residential (4151491 3207923, 4151474 32079…
@@ -1063,24 +1030,18 @@ requires a geographic CRS for that.</p>
 #&gt; #
 #&gt; # An undirected multigraph with 14 components with spatially explicit edges
 #&gt; #
-#&gt; # Edge Data:     851 × 6 (active)</span>
-#&gt; <span style="color: #555555;"># Geometry type: LINESTRING</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 851 × 6</span>
 #&gt;    from    to name                  type                        geometry azimuth
 #&gt;   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;int&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>               <span style="color: #555555; font-style: italic;">&lt;LINESTRING [m]&gt;</span>   <span style="color: #555555;">[rad]</span>
-#&gt; <span style="color: #555555;">1</span>     1     2 Havixbecker Strasse   resid… (4151491 3207923, 4151474 32…  -<span style="color: #BB0000;">0.670</span>
-#&gt; <span style="color: #555555;">2</span>     3     4 Pienersallee          secon… (4151398 3207777, 4151390 32…  -<span style="color: #BB0000;">2.91</span> 
-#&gt; <span style="color: #555555;">3</span>     5     6 Schulte-Bernd-Strasse resid… (4151408 3207539, 4151417 32…   0.203
-#&gt; <span style="color: #555555;">4</span>     7     8 <span style="color: #BB0000;">NA</span>                    path   (4151885 3206698, 4151861 32…  -<span style="color: #BB0000;">0.968</span>
-#&gt; <span style="color: #555555;">5</span>     9    10 Welsingheide          resid… (4151732 3207017, 4151721 32…  -<span style="color: #BB0000;">3.12</span> 
-#&gt; <span style="color: #555555;">6</span>    11    12 <span style="color: #BB0000;">NA</span>                    footw… (4152152 3206984, 4152143 32…  -<span style="color: #BB0000;">3.10</span> 
+#&gt; <span style="color: #555555;">1</span>     1     2 Havixbecker Strasse   residenti… (4151491 3207923, 415147…  -<span style="color: #BB0000;">0.670</span>
+#&gt; <span style="color: #555555;">2</span>     3     4 Pienersallee          secondary  (4151398 3207777, 415139…  -<span style="color: #BB0000;">2.91</span> 
+#&gt; <span style="color: #555555;">3</span>     5     6 Schulte-Bernd-Strasse residenti… (4151408 3207539, 415141…   0.203
+#&gt; <span style="color: #555555;">4</span>     7     8 <span style="color: #BB0000;">NA</span>                    path       (4151885 3206698, 415186…  -<span style="color: #BB0000;">0.968</span>
+#&gt; <span style="color: #555555;">5</span>     9    10 Welsingheide          residenti… (4151732 3207017, 415172…  -<span style="color: #BB0000;">3.12</span> 
+#&gt; <span style="color: #555555;">6</span>    11    12 <span style="color: #BB0000;">NA</span>                    footway    (4152152 3206984, 415214…  -<span style="color: #BB0000;">3.10</span> 
 #&gt; <span style="color: #555555;"># … with 845 more rows</span>
 #&gt; <span style="color: #555555;">#
-#&gt; # Node Data:     701 × 2</span>
-#&gt; <span style="color: #555555;"># Geometry type: POINT</span>
-#&gt; <span style="color: #555555;"># Dimension:     XY</span>
-#&gt; <span style="color: #555555;"># Bounding box:  xmin: 4150707 ymin: 3206375 xmax: 4152367 ymax: 3208565</span>
+#&gt; # A tibble: 701 × 2</span>
 #&gt;            geometry building
 #&gt;         <span style="color: #555555; font-style: italic;">&lt;POINT [m]&gt;</span> <span style="color: #555555; font-style: italic;">&lt;lgl&gt;</span>   
 #&gt; <span style="color: #555555;">1</span> (4151491 3207923) TRUE    
