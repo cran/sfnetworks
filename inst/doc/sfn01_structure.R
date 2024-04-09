@@ -22,7 +22,7 @@ old_hooks = fansi::set_knit_hooks(
   which = c("output", "message", "error")
 )
 
-## ---- message=FALSE-----------------------------------------------------------
+## ----message=FALSE------------------------------------------------------------
 library(sfnetworks)
 library(sf)
 library(tidygraph)
@@ -63,7 +63,7 @@ edges
 net = sfnetwork(nodes, edges, node_key = "name")
 net
 
-## ---- fig.show='hold', out.width='50%'----------------------------------------
+## ----fig.show='hold', out.width='50%'-----------------------------------------
 st_geometry(edges) = NULL
 
 other_net = sfnetwork(nodes, edges, edges_as_lines = TRUE)
@@ -71,12 +71,12 @@ other_net = sfnetwork(nodes, edges, edges_as_lines = TRUE)
 plot(net, cex = 2, lwd = 2, main = "Original geometries")
 plot(other_net, cex = 2, lwd = 2, main = "Straight lines")
 
-## ---- error=TRUE--------------------------------------------------------------
+## ----error=TRUE---------------------------------------------------------------
 st_geometry(edges) = st_sfc(c(l2, l3, l1), crs = 4326)
 
 net = sfnetwork(nodes, edges)
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 roxel
 net = as_sfnetwork(roxel)
 plot(net)
@@ -96,13 +96,13 @@ net %>%
 ## -----------------------------------------------------------------------------
 st_as_sf(net, "edges")
 
-## ---- fig.width=5, fig.height=5-----------------------------------------------
+## ----fig.width=5, fig.height=5------------------------------------------------
 plot(net)
 
-## ---- message=FALSE, fig.width=5, fig.height=5--------------------------------
+## ----message=FALSE, fig.width=5, fig.height=5---------------------------------
 autoplot(net) + ggtitle("Road network of Münster Roxel")
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 net = net %>%
   activate("nodes") %>%
   mutate(bc = centrality_betweenness())
@@ -117,7 +117,7 @@ net %>%
   activate("nodes") %>%
   st_geometry()
 
-## ---- fig.show = 'hold', out.width = "50%"------------------------------------
+## ----fig.show = 'hold', out.width = "50%"-------------------------------------
 net %>%
   activate("edges") %>%
   st_set_geometry(NULL) %>%
@@ -128,7 +128,7 @@ net %>%
   st_set_geometry(NULL) %>%
   plot(vertex.color = "black", main = "Nodes without geometries")
 
-## ---- eval = geos37-----------------------------------------------------------
+## ----eval = geos37------------------------------------------------------------
 as_sfnetwork(roxel, directed = TRUE) %>%
   activate("edges") %>%
   st_reverse()
@@ -173,7 +173,7 @@ net %>%
   activate("nodes") %>%
   st_bbox()
 
-## ---- fig.show='hold', out.width = "50%"--------------------------------------
+## ----fig.show='hold', out.width = "50%"---------------------------------------
 node1 = st_point(c(8, 51))
 node2 = st_point(c(7, 51.5))
 node3 = st_point(c(8, 52))
@@ -203,7 +203,7 @@ net %>%
   st_set_agr(c("name" = "constant", "type" = "constant")) %>%
   st_agr()
 
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 par(oldpar)
 options(oldoptions)
 

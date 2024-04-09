@@ -19,7 +19,7 @@ old_hooks = fansi::set_knit_hooks(
   which = c("output", "message", "error")
 )
 
-## ---- message=FALSE-----------------------------------------------------------
+## ----message=FALSE------------------------------------------------------------
 library(sfnetworks)
 library(sf)
 library(tidygraph)
@@ -27,7 +27,7 @@ library(dplyr)
 library(purrr)
 library(TSP)
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 net = as_sfnetwork(roxel, directed = FALSE) %>%
   st_transform(3035) %>%
   activate("edges") %>%
@@ -64,7 +64,7 @@ net %>%
   slice(c(495, 121, 458)) %>%
   plot(col = colors, pch = 8, cex = 2, lwd = 2, add = TRUE)
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 p1 = st_geometry(net, "nodes")[495] + st_sfc(st_point(c(50, -50)))
 st_crs(p1) = st_crs(net)
 p2 = st_geometry(net, "nodes")[458]
@@ -79,7 +79,7 @@ paths %>%
   walk(plot_path)
 plot(c(p1, p2, p3), col = colors, pch = 8, cex = 2, lwd = 2, add = TRUE)
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 # Our network consists of several unconnected components.
 with_graph(net, graph_component_count())
 
@@ -125,7 +125,7 @@ net %>%
     direction = "all"
   )
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 # Select a random set of sites and facilities.
 # We select random locations within the bounding box of the nodes.
 set.seed(128)
@@ -197,7 +197,7 @@ tour_idxs
 # In meters, since that was the unit of our cost values.
 round(tour_length(tour), 0)
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 # Define the nodes to calculate the shortest paths from.
 # Define the nodes to calculate the shortest paths to.
 # All based on the calculated order of visit.
@@ -231,7 +231,7 @@ text(
   labels = "start/end\npoint"
 )
 
-## ---- warning=FALSE-----------------------------------------------------------
+## ----warning=FALSE------------------------------------------------------------
 # How many edge types are there?
 types = net %>%
   activate("edges") %>%
@@ -256,7 +256,7 @@ net = net %>%
 
 net
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 net = activate(net, "nodes")
 
 p = net %>%
@@ -277,7 +277,7 @@ plot(iso_poly, col = NA, border = "black", lwd = 3, add = TRUE)
 plot(iso, col = colors[2], add = TRUE)
 plot(p, col = colors[1], pch = 8, cex = 2, lwd = 2, add = TRUE)
 
-## ---- fig.width=5, fig.height=5-----------------------------------------------
+## ----fig.width=5, fig.height=5------------------------------------------------
 # Define the threshold values (in seconds).
 # Define also the colors to plot the neighborhoods in.
 thresholds = rev(seq(60, 600, 60))
@@ -296,7 +296,7 @@ plot(p, pch = 8, cex = 2, lwd = 2, add = TRUE)
 ## -----------------------------------------------------------------------------
 table(roxel$type)
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 paths_sf = net %>%
   activate("edges") %>%
   slice(unlist(paths$edge_paths)) %>%
@@ -324,7 +324,7 @@ weighted_net = net %>%
   mutate(multiplier = weighting_profile[type]) %>%
   mutate(weight = edge_length() * multiplier)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 weighted_paths = st_network_paths(weighted_net, from = 495, to = c(458, 121), weights = "weight")
 
 weighted_paths_sf = weighted_net %>%
@@ -341,7 +341,7 @@ plot(st_as_sf(net, "edges")["type"], lwd = 4,
      key.pos = NULL, reset = FALSE, main = "Custom weights")
 plot(st_geometry(weighted_paths_sf), add = TRUE)
 
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 par(oldpar)
 options(oldoptions)
 

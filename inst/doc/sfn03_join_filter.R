@@ -19,14 +19,14 @@ old_hooks = fansi::set_knit_hooks(
   which = c("output", "message", "error")
 )
 
-## ---- message=FALSE-----------------------------------------------------------
+## ----message=FALSE------------------------------------------------------------
 library(sfnetworks)
 library(sf)
 library(tidygraph)
 library(igraph)
 library(dplyr)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 p1 = st_point(c(4151358, 3208045))
 p2 = st_point(c(4151340, 3207120))
 p3 = st_point(c(4151856, 3207106))
@@ -46,7 +46,7 @@ plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
 plot(net, col = "grey")
 plot(filtered, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 filtered = net %>%
   activate("edges") %>%
   st_filter(poly, .pred = st_intersects)
@@ -56,7 +56,7 @@ plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
 plot(net, col = "grey")
 plot(filtered, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 filtered = net %>%
   activate("edges") %>%
   st_filter(poly, .pred = st_intersects) %>%
@@ -68,7 +68,7 @@ plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
 plot(net, col = "grey")
 plot(filtered, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 point = st_centroid(st_combine(net))
 
 filtered = net %>%
@@ -80,7 +80,7 @@ plot(point, col = "red", cex = 3, pch = 20, add = TRUE)
 plot(net, col = "grey")
 plot(filtered, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 filtered = net %>%
   activate("edges") %>%
   filter(edge_intersects(poly)) %>%
@@ -101,7 +101,7 @@ net %>%
 net %>%
   mutate(in_poly = node_intersects(poly))
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 v = 4152000
 l = st_linestring(rbind(c(v, st_bbox(net)["ymin"]), c(v, st_bbox(net)["ymax"])))
 
@@ -114,7 +114,7 @@ plot(l, col = "red", lty = 4, lwd = 4, add = TRUE)
 plot(net, col = "grey")
 plot(filtered_by_coords, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 clipped = net %>%
   activate("edges") %>%
   st_intersection(poly) %>%
@@ -126,7 +126,7 @@ plot(poly, border = "red", lty = 4, lwd = 4, add = TRUE)
 plot(net, col = "grey")
 plot(clipped, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 codes = net %>%
   st_make_grid(n = c(2, 2)) %>%
   st_as_sf() %>%
@@ -153,7 +153,7 @@ net %>%
   activate("edges") %>%
   st_join(two_equal_polys, join = st_intersects)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 # Create a network.
 node1 = st_point(c(0, 0))
 node2 = st_point(c(1, 0))
@@ -190,7 +190,7 @@ plot(snapped_pois, pch = 8, cex = 2, lwd = 2, add = TRUE)
 ## -----------------------------------------------------------------------------
 st_join(net, snapped_pois)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 blended = st_network_blend(net, pois)
 blended
 plot_connections = function(pois) {
@@ -205,7 +205,7 @@ plot_connections(pois)
 plot(pois, pch = 8, cex = 2, lwd = 2, add = TRUE)
 plot(blended, cex = 2, lwd = 4)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 pois = data.frame(poi_type = c("bakery", "butcher", "bar"),
                   x = c(0, 0.6, 0.4), y = c(0.2, 0.2, 0.3)) %>%
   st_as_sf(coords = c("x", "y"))
@@ -239,7 +239,7 @@ st_intersects(l1, st_intersection(l1, l2), sparse = FALSE)
 # The intersection point is instead located a tiny bit next to the line.
 st_distance(l1, st_intersection(l1, l2))
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 net = as_sfnetwork(l1)
 p = st_intersection(l1, l2)
 
@@ -250,7 +250,7 @@ plot(l1)
 plot(l2, col = "grey", lwd = 2, add = TRUE)
 plot(st_network_blend(net, p, tolerance = 1e-10), lwd = 2, cex = 2, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 node3 = st_point(c(1, 1))
 node4 = st_point(c(0, 1))
 edge2 = st_sfc(st_linestring(c(node2, node3)))
@@ -265,7 +265,7 @@ plot(net, pch = 15, cex = 2, lwd = 4)
 plot(other_net, col = "red", pch = 18, cex = 2, lty = 2, lwd = 4, add = TRUE)
 plot(joined, cex = 2, lwd = 4)
 
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 par(oldpar)
 options(oldoptions)
 

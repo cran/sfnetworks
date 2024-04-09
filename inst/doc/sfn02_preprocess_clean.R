@@ -22,7 +22,7 @@ old_hooks = fansi::set_knit_hooks(
   which = c("output", "message", "error")
 )
 
-## ---- message=FALSE-----------------------------------------------------------
+## ----message=FALSE------------------------------------------------------------
 library(sfnetworks)
 library(sf)
 library(tidygraph)
@@ -52,7 +52,7 @@ st_geometry(edges) = st_geometry(edges) %>%
 # The edges are connected.
 as_sfnetwork(edges)
 
-## ---- eval = geos37-----------------------------------------------------------
+## ----eval = geos37------------------------------------------------------------
 p1 = st_point(c(7, 51))
 p2 = st_point(c(7, 52))
 p3 = st_point(c(8, 52))
@@ -72,7 +72,7 @@ edges = rbind(edges, reversed_duplicates)
 net = as_sfnetwork(edges)
 activate(net, "edges")
 
-## ---- fig.height=5, fig.width=5-----------------------------------------------
+## ----fig.height=5, fig.width=5------------------------------------------------
 p1 = st_point(c(0, 1))
 p2 = st_point(c(1, 1))
 p3 = st_point(c(2, 1))
@@ -118,7 +118,7 @@ net = as_sfnetwork(lines)
 plot(st_geometry(net, "edges"), col = edge_colors(net), lwd = 4)
 plot(st_geometry(net, "nodes"), pch = 20, cex = 2, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 simple = net %>%
   activate("edges") %>%
   filter(!edge_is_multiple()) %>%
@@ -129,7 +129,7 @@ plot(st_geometry(net, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 plot(st_geometry(simple, "edges"), col = edge_colors(simple), lwd = 4)
 plot(st_geometry(simple, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 simple = net %>%
   activate("edges") %>%
   arrange(edge_length()) %>%
@@ -141,7 +141,7 @@ plot(st_geometry(net, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 plot(st_geometry(simple, "edges"), col = edge_colors(simple), lwd = 4)
 plot(st_geometry(simple, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 # Add some attribute columns to the edges table.
 flows = sample(1:10, ecount(net), replace = TRUE)
 types = c(rep("path", 8), rep("road", 7))
@@ -186,7 +186,7 @@ plot(st_geometry(net, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 plot(st_geometry(simple, "edges"), col = edge_colors(simple), lwd = 4)
 plot(st_geometry(simple, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 subdivision = convert(simple, to_spatial_subdivision)
 
 plot(st_geometry(simple, "edges"), col = edge_colors(simple), lwd = 4)
@@ -194,7 +194,7 @@ plot(st_geometry(simple, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 plot(st_geometry(subdivision, "edges"), col = edge_colors(subdivision), lwd = 4)
 plot(st_geometry(subdivision, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 
-## ---- message=FALSE, fig.show='hold', out.width = '50%'-----------------------
+## ----message=FALSE, fig.show='hold', out.width = '50%'------------------------
 smoothed = convert(subdivision, to_spatial_smooth)
 
 plot(st_geometry(subdivision, "edges"), col = edge_colors(subdivision), lwd = 4)
@@ -230,7 +230,7 @@ other_smoothed %>%
   filter(edge_is_between(1, 2) | edge_is_between(7, 3)) %>%
   st_as_sf()
 
-## ---- message=FALSE, fig.show='hold', out.width = '50%'-----------------------
+## ----message=FALSE, fig.show='hold', out.width = '50%'------------------------
 other_smoothed = convert(subdivision, to_spatial_smooth, require_equal = "type")
 
 plot(st_geometry(subdivision, "edges"), col = edge_colors(subdivision), lwd = 4)
@@ -238,7 +238,7 @@ plot(st_geometry(subdivision, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 plot(st_geometry(other_smoothed, "edges"), col = edge_colors(smoothed), lwd = 4)
 plot(st_geometry(other_smoothed, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 
-## ---- message=FALSE, fig.show='hold', out.width = '50%'-----------------------
+## ----message=FALSE, fig.show='hold', out.width = '50%'------------------------
 other_smoothed = convert(subdivision, to_spatial_smooth, protect = 2)
 
 plot(st_geometry(subdivision, "edges"), col = edge_colors(subdivision), lwd = 4)
@@ -270,7 +270,7 @@ clustered = clustered %>%
 
 select(clustered, cls, cmp)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 contracted = convert(
   clustered,
   to_spatial_contracted,
@@ -324,13 +324,13 @@ contracted %>%
   slice(4) %>%
   st_as_sf()
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 plot(st_geometry(net, "edges"), col = edge_colors(net), lwd = 4)
 plot(st_geometry(net, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 plot(st_geometry(contracted, "edges"), col = edge_colors(contracted), lwd = 4)
 plot(st_geometry(contracted, "nodes"), pch = 20, cex = 1.5, add = TRUE)
 
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 par(oldpar)
 options(oldoptions)
 

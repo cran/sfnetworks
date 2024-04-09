@@ -19,7 +19,7 @@ old_hooks = fansi::set_knit_hooks(
   which = c("output", "message", "error")
 )
 
-## ---- message=FALSE-----------------------------------------------------------
+## ----message=FALSE------------------------------------------------------------
 library(sfnetworks)
 library(sf)
 library(tidygraph)
@@ -42,7 +42,7 @@ grouped_net %>%
   unique() %>%
   length()
 
-## ---- fig.width=5, fig.height=5-----------------------------------------------
+## ----fig.width=5, fig.height=5------------------------------------------------
 plot(st_geometry(net, "edges"), col = "grey", lwd = 0.5)
 
 grouped_net %>%
@@ -52,7 +52,7 @@ grouped_net %>%
   filter(group %in% c(1:11)) %>%
   plot(lwd = 4, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 new_net = net %>%
   mutate(is_cut = node_is_cut()) %>%
   morph(to_linegraph) %>%
@@ -85,7 +85,7 @@ length(morphed_net)
 ## -----------------------------------------------------------------------------
 convert(net, to_complement)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 new_net = net %>%
   activate("nodes") %>%
   filter(group_components() == 1) %>%
@@ -124,14 +124,14 @@ net %>%
   mutate(bc_diff = bc_dir - bc_undir) %>%
   arrange(desc(bc_diff))
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 implicit_net = st_set_geometry(activate(net, "edges"), NULL)
 explicit_net = convert(implicit_net, to_spatial_explicit)
 
 plot(implicit_net, draw_lines = FALSE, main = "Implicit edges")
 plot(explicit_net, main = "Explicit edges")
 
-## ---- fig.width=5, fig.height=5-----------------------------------------------
+## ----fig.width=5, fig.height=5------------------------------------------------
 # Define the origin location.
 p = net %>%
   st_geometry() %>%
@@ -155,7 +155,7 @@ net %>%
     weights = edge_length()
   )
 
-## ---- fig.width=5, fig.height=5-----------------------------------------------
+## ----fig.width=5, fig.height=5------------------------------------------------
 new_net = net %>%
   activate("edges") %>%
   morph(
@@ -175,7 +175,7 @@ new_net %>%
   st_geometry() %>%
   plot(col = "red", lwd = 4, add = TRUE)
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 # Add a flow attribute to the edges.
 # When merging multiple edges, we want the flow of the new edge to be:
 # --> The sum of the flows of the merged edges.
@@ -206,7 +206,7 @@ simple_net %>%
   filter(edge_is_between(pull(a_multiple, from), pull(a_multiple, to))) %>%
   st_as_sf()
 
-## ---- fig.show='hold', out.width = '50%'--------------------------------------
+## ----fig.show='hold', out.width = '50%'---------------------------------------
 smoothed_net = convert(net, to_spatial_smooth)
 
 plot(net, main = "Original network")
@@ -248,7 +248,7 @@ net %>%
   st_join(codes, join = st_intersects) %>%
   unmorph()
 
-## ---- error = TRUE------------------------------------------------------------
+## ----error = TRUE-------------------------------------------------------------
 # Azimuth calculation fails with our projected CRS.
 # The function complains the coordinates are not longitude/latitude.
 net %>%
@@ -263,7 +263,7 @@ net %>%
   mutate(azimuth = edge_azimuth()) %>%
   unmorph()
 
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 par(oldpar)
 options(oldoptions)
 
