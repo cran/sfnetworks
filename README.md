@@ -4,7 +4,7 @@
 
 [![R build status](https://github.com/luukvdmeer/sfnetworks/workflows/R-CMD-check/badge.svg)](https://github.com/luukvdmeer/sfnetworks/actions)
 [![Codecov test coverage](https://codecov.io/gh/luukvdmeer/sfnetworks/branch/master/graph/badge.svg)](https://app.codecov.io/gh/luukvdmeer/sfnetworks)
-[![CRAN](http://www.r-pkg.org/badges/version/sfnetworks)](https://cran.r-project.org/package=sfnetworks)
+[![CRAN](https://www.r-pkg.org/badges/version/sfnetworks)](https://cran.r-project.org/package=sfnetworks)
 [![Downloads](https://cranlogs.r-pkg.org/badges/sfnetworks)](https://cran.r-project.org/package=sfnetworks)
 <!-- badges: end -->
 
@@ -59,8 +59,6 @@ This project is released with a [Contributor Code of Conduct](https://github.com
 
 ## Acknowledgment
 
-This project gratefully acknowledges financial [support](https://www.r-consortium.org/projects) from the
+This project gratefully acknowledges financial support from the [R Consortium](https://r-consortium.org/).
 
-<a href="https://www.r-consortium.org/all-projects/awarded-projects">
-<img src="https://raw.githubusercontent.com/RConsortium/artwork/main/r_consortium/R_Consortium-logo-horizontal-color.png" width="300">
-</a>
+<img src="https://raw.githubusercontent.com/RConsortium/artwork/main/r_consortium/R_Consortium-logo-horizontal-color.png" width="300" >
